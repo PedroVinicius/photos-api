@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+</body>
+
+<script>
+  function buildPhotos(photos) {
+    return photos.map(function(photo) {
+      let el = document.createElement('img')
+
+      el.setAttribute('src', 'http://localhost:3000/photos/' + photo.id)
+      el.style.width = el.style.height = '90px'
+
+      return el
+    })
+  }
+
+  function displayPhotos(photos) {
+    console.info(photos)
+
+    photos.forEach(function(el) {
+      document.body.appendChild(el)
+    })
+  }
+
+  fetch('http://localhost:3000/photos')
+    .then(response => response.json())
+    .then(buildPhotos)
+    .then(displayPhotos)
+</script>
+</html>
